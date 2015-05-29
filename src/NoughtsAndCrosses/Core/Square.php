@@ -17,4 +17,9 @@ class Square
     {
         return new Square($row, $column);
     }
+
+    public function __toString()
+    {
+        return sprintf('(%d, %d)', $this->row, $this->column);
+    }
 }

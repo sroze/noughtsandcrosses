@@ -33,4 +33,9 @@ class MoveTaken implements Event
     {
         return $this->player;
     }
+
+    public function __toString()
+    {
+        return 'Square '.$this->square->__toString().' by '.$this->player->__toString();
+    }
 }

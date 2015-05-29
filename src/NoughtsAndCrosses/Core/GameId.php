@@ -17,4 +17,9 @@ class GameId
     {
         return new static(Uuid::uuid4());
     }
+
+    public function __toString()
+    {
+        return $this->uuid->toString();
+    }
 }

@@ -10,16 +10,18 @@ class Game
 
     private $id;
 
+    private $size;
+
     private $occupiedSquares = [];
 
     private $lastPlayer;
 
     private function __construct(){}
 
-    public static function begin(GameId $identity)
+    public static function begin(GameId $identity, $size = 3)
     {
         $game = new static();
-        $game->apply(new GameBegan($identity));
+        $game->apply(new GameBegan($identity, $size));
 
         return $game;
     }
@@ -62,19 +64,28 @@ class Game
     private function applyGameBegan(GameBegan $gameBegan)
     {
         $this->id = $gameBegan->id();
+        $this->size = $gameBegan->size();
     }
 
     private function applyMoveTaken(MoveTaken $moveTaken)
     {
+        if ($this->isFinished()) {
+            throw new MoveNotValid('No more space on game', MoveNotValid::REASON_NO_MORE_SPACE);
+        }
         if (in_array($moveTaken->square(), $this->occupiedSquares)) {
-            throw new MoveNotValid('Square already played');
+            throw new MoveNotValid('Square already played', MoveNotValid::REASON_SQUARE_ALREADY_PLAYED);
         }
 
         if ($moveTaken->player() == $this->lastPlayer) {
-            throw new MoveNotValid('Same player played twice in a row');
+            throw new MoveNotValid('Same player played twice in a row', MoveNotValid::REASON_PLAYER_IS_ALREADY_THE_LAST_ONE);
         }
 
         $this->lastPlayer = $moveTaken->player();
         $this->occupiedSquares[] = $moveTaken->square();
+    }
+
+    private function isFinished()
+    {
+        return count($this->occupiedSquares) === pow($this->size, 2);
     }
 }

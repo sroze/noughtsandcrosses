@@ -4,7 +4,7 @@ namespace NoughtsAndCrosses\Core;
 
 use NoughtsAndCrosses\Core\Command\Command;
 use NoughtsAndCrosses\Core\Command\CommandHandler;
-use NoughtsAndCrosses\Infrastructure\InMemory\EventBus;
+use NoughtsAndCrosses\Core\Event\EventBus;
 
 class HandleBeginGame implements CommandHandler
 {
