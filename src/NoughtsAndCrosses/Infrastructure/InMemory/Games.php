@@ -4,7 +4,6 @@ namespace NoughtsAndCrosses\Infrastructure\InMemory;
 
 use NoughtsAndCrosses\Core\Event\EventStore;
 use NoughtsAndCrosses\Core\Game;
-use NoughtsAndCrosses\Core\GameBegan;
 use NoughtsAndCrosses\Core\GameId;
 use NoughtsAndCrosses\Core\Games as GamesInterface;
 

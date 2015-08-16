@@ -4,6 +4,7 @@ namespace NoughtsAndCrosses\Infrastructure\InMemory;
 
 use NoughtsAndCrosses\Core\Command\Command;
 use NoughtsAndCrosses\Core\Command\CommandBus as CommandBusInterface;
+use NoughtsAndCrosses\Core\Event\EventBus as EventBusInterface;
 
 class CommandBus implements CommandBusInterface
 {
@@ -11,7 +12,7 @@ class CommandBus implements CommandBusInterface
 
     private $commandHandlers;
 
-    public function __construct(EventBus $eventBus, array $commandHandlers)
+    public function __construct(EventBusInterface $eventBus, array $commandHandlers)
     {
         $this->eventBus = $eventBus;
         $this->commandHandlers = $commandHandlers;

@@ -23,4 +23,9 @@ class Player
     {
         return new Player(static::PLAYER_O);
     }
+
+    public function __toString()
+    {
+        return $this->player;
+    }
 }
